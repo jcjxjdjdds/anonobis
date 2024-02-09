@@ -12,10 +12,10 @@ App = app()
 os.environ['SSL_CERT_FILE'] = certifi.where() 
 api_id = '24405483'
 api_hash = '9214a7069fa94fd78a2f267888073650'
-TELEGRAM_TOKEN="6390611461:AAGGvdYAwY4GUifbiXq2LZPm8euK7d9ssmk"
+TELEGRAM_TOKEN="6787095243:AAGvNT6PCVOCRh1kQUe-NTqdv4Yma5QM8r8"
 
 allwod_ids=["6818604665", "2095495680"]
-admin_id= 2095495680
+admin_id= 6818604665
 
 bot = telebot.TeleBot(TELEGRAM_TOKEN, threaded=False,num_threads=55,skip_pending=True)
  
