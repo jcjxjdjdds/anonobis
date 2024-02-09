@@ -48,7 +48,7 @@ def handle_remove(message):
 @bot.message_handler(commands=['start'])
 def Admin(message):
     id = message.from_user.id
-    if not int(id) in allwod_ids: return
+    if not str(id) in allwod_ids: return
     num = len(DB.accounts())
     AddAccount=types.InlineKeyboardButton("اضافه حساب 🛎",callback_data="AddAccount")
     Accounts=types.InlineKeyboardButton("اكواد حساباتك 🖲",callback_data="Accounts")
