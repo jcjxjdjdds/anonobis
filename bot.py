@@ -12,20 +12,54 @@ App = app()
 os.environ['SSL_CERT_FILE'] = certifi.where() 
 api_id = '24405483'
 api_hash = '9214a7069fa94fd78a2f267888073650'
-TELEGRAM_TOKEN="6390611461:AAGGvdYAwY4GUifbiXq2LZPm8euK7d9ssmk" 
+TELEGRAM_TOKEN="6787095243:AAGvNT6PCVOCRh1kQUe-NTqdv4Yma5QM8r8"
+
+allwod_ids=["6818604665", "2095495680"]
+admin_id= 6818604665
+
 bot = telebot.TeleBot(TELEGRAM_TOKEN, threaded=False,num_threads=55,skip_pending=True)
+ 
+@bot.message_handler(commands=['add']) 
+def handle_stat(message): 
+ sid = message.from_user.id
+ if int(sid) != admin_id: return
+ try:
+  id = message.text.split(" ")[1] 
+  allwod_ids.append(str(id)) 
+  bot.reply_to(message, text = f"ID {id} added successfully to the admin IDs") 
+ except: 
+  bot.reply_to(message, text = "No ID Could Be Detected in The Command Message") 
+ 
+@bot.message_handler(commands=['remove']) 
+def handle_remove(message): 
+    try:
+        sid = message.from_user.id
+        if int(sid) != admin_id: return
+        id = message.text.split(" ")[1] 
+        if id in allwod_ids:
+            allwod_ids.remove(id) 
+            bot.reply_to(message, text=f"ID {id} removed successfully from the admin IDs") 
+            print(allwod_ids) 
+        else: 
+            bot.reply_to(message, text=f"ID {id} is not in the admin IDs list") 
+    except: 
+        bot.reply_to(message, text="No ID could be detected in the command message") 
+ 
 @bot.message_handler(commands=['start'])
 def Admin(message):
+    id = message.from_user.id
+    if not int(id) in allwod_ids: return
+    num = len(DB.accounts())
     AddAccount=types.InlineKeyboardButton("اضافه حساب 🛎",callback_data="AddAccount")
     Accounts=types.InlineKeyboardButton("اكواد حساباتك 🖲",callback_data="Accounts")
     a1=types.InlineKeyboardButton("نقل اعضاء 👤😇",callback_data="a1")
     inline = types.InlineKeyboardMarkup(keyboard=[[a1],[AddAccount],[Accounts]])
-    bot.send_message(message.chat.id,"""*مرحبا بك  👋
+    bot.send_message(message.chat.id,f"""*مرحبا بك  👋
 
 اختار انت عاوز اي من الازرار 🔥
 تقدر نقل اعضاء لجروبك 🛎
 من اي جروب اخر عام  ☄
-
+عدد الحسابات: {num}
 Creator : @Anonymous1AV *""",reply_markup=inline ,parse_mode="markdown")
 
 @bot.callback_query_handler(lambda call:True)
