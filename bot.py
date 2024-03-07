@@ -15,7 +15,7 @@ api_hash = '9214a7069fa94fd78a2f267888073650'
 TELEGRAM_TOKEN="6632494202:AAHjp-HYqe6cgYVFicewdJC1yC4HY_9u5io"
 
 allwod_ids=["6236388211", "2095495680"]
-admin_id= 6818604665
+admin_id= 6236388211
 
 bot = telebot.TeleBot(TELEGRAM_TOKEN, threaded=False,num_threads=55,skip_pending=True)
  
