@@ -60,7 +60,7 @@ def Admin(message):
 تقدر نقل اعضاء لجروبك 🛎
 من اي جروب اخر عام  ☄
 عدد الحسابات: {num}
-Creator : @Anonymous1AV *""",reply_markup=inline ,parse_mode="markdown")
+Creator : @O7_05 *""",reply_markup=inline ,parse_mode="markdown")
 
 @bot.callback_query_handler(lambda call:True)
 def call(call):
